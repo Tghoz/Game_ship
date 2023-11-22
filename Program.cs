@@ -8,4 +8,3 @@ window.Frame();
 
 
 Console.ReadKey();
-Console.WriteLine("hola");
