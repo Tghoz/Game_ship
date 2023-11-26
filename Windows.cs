@@ -70,6 +70,7 @@ namespace Game_ship
             Console.SetCursorPosition(LowerLimit.X, LowerLimit.Y);
             Console.Write("╝");
 
+            
 
         }
     }
