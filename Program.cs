@@ -1,10 +1,11 @@
 ﻿using Game_ship;
 using System.Drawing;
-
-
+using System.Numerics;
 
 Windows window;
 Ship ship;
+
+bool play = true;
 
 void Start()
 {
@@ -15,7 +16,15 @@ void Start()
     ship.Frame();
 }
 
-Start();
+void Game()
+{
+    while (play)
+    {
+        ship.MoveShip(2);
+    }
+}
 
+Start();
+Game();
 Console.ReadKey();
 
