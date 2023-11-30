@@ -37,6 +37,7 @@ namespace Game_ship
 
             Console.ForegroundColor = Color;
 
+
             Console.SetCursorPosition(x+3, y);
             Console.Write("A");
             Console.SetCursorPosition(x+1, y+1);
@@ -65,7 +66,7 @@ namespace Game_ship
             foreach (Point item in PositionShip)
             {
                 Console.SetCursorPosition (item.X, item.Y);
-                Console.Write(' ');
+                Console.Write(" ");
             }
         }
 
@@ -88,12 +89,37 @@ namespace Game_ship
             {
                 range = new Point(-1, 0);
             }
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Environment.Exit(0);
+            }
 
             range.X *= speed;
             range.Y *= speed;
 
-            Position = new Point(Position.X+range.X, Position.Y+range.Y);
+           
         }
+
+        public void Collisions( Point range)
+        {
+            Point positionAux = new Point(Position.X + range.X, Position.Y + range.Y);
+            if (positionAux.X <= WindowsC.UpperLimit.X)
+                positionAux.X = WindowsC.UpperLimit.X + 1;
+
+            if (positionAux.X + 6 >= WindowsC.LowerLimit.X)
+                positionAux.X = WindowsC.LowerLimit.X - 7;
+
+            if (positionAux.Y <= WindowsC.UpperLimit.Y)
+                positionAux.Y = WindowsC.UpperLimit.Y + 1;
+
+            if (positionAux.Y + 2 >= WindowsC.LowerLimit.Y)
+                positionAux.Y = WindowsC.LowerLimit.Y - 3;
+
+            Position = positionAux;
+        }   
+
+
+
 
         public void MoveShip(int speed)
         {
@@ -103,7 +129,7 @@ namespace Game_ship
 
                 Point range = new Point();
                 Keyboard(ref range, speed );
-
+                Collisions(range ); 
                 Frame();
             }
         }
